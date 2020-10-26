@@ -17,4 +17,8 @@ data class Cliente(
         @OneToMany(mappedBy = "cliente")
         val listaMascotas: List<Mascota> = ArrayList<Mascota>()
 
-)
+) {
+        override fun toString(): String {
+                return "{nombre:${this.nombre}, correo: ${this.correo}, codigo_cliente:${this.codigo_cliente}, telefono:${this.telefono}}";
+        }
+}

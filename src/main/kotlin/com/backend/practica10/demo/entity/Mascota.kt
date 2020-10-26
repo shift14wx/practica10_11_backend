@@ -2,6 +2,7 @@ package com.backend.practica10.demo.entity
 
 import com.backend.practica10.demo.entity.relations.MascotasKeyPk
 import com.backend.practica10.demo.entity.relations.MascotasKeysPk
+import com.backend.practica10.demo.model.Mmascota
 import java.io.Serializable
 import java.sql.Timestamp
 import javax.persistence.*

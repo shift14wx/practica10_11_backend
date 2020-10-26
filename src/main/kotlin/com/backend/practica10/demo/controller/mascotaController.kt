@@ -26,6 +26,11 @@ class mascotaController {
         return servicio.obtenerMascotas();
     }
 
+    @PutMapping("/")
+    fun actualizarMascota(@RequestBody @Validated mascota: Mmascota): Boolean {
+        return servicio.actualizar(mascota);
+    }
+
     @GetMapping(value = ["/"])
     fun hello(): String {
         return "Hola!! estas en la ruta de mascotas!";

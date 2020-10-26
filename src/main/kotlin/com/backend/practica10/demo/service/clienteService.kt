@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.stereotype.Service
 import java.util.logging.Logger
+import java.util.stream.Stream
 
 @Service("clienteService")
 class clienteService {
@@ -40,5 +41,9 @@ class clienteService {
             return false;
         }
     }
+
+//    fun obtenerStreamClientes() : Stream<Cliente> {
+//        return repositorio.findAllClientes();
+//    }
 
 }

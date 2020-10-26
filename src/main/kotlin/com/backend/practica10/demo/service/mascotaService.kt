@@ -59,8 +59,20 @@ class mascotaService {
 
     }
 
-    fun actualizar(mascota: Mascota): Boolean {
-        return this.checkIfModelsItsNotNull(mascota) { m: Mascota -> repositorio.save(m) };
+    fun actualizar(mascotaAlmacenar: Mmascota): Boolean {
+
+        var mascota: Mascota = Mascota(mascotaAlmacenar.codigo_mascota,
+                mascotaAlmacenar.nombre,
+                mascotaAlmacenar.fecha_nacimiento,
+                mascotaAlmacenar.sexo, mascotaAlmacenar.peso,
+                mascotaAlmacenar.color,
+                mascotaAlmacenar.comentarios,
+                repositorioCliente.findById(mascotaAlmacenar.codigo_cliente).get(),
+                repositorioEspecie.findById(mascotaAlmacenar.codigo_especie).get()
+        )
+
+        return checkIfModelsItsNotNull(mascota) { mascota: Mascota -> repositorio.save(mascota) }
+
     }
 
     fun checkIfModelsItsNotNull(mascota: Mascota, consumer: (Mascota) -> Unit): Boolean {
