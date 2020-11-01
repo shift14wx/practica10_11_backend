@@ -1,6 +1,8 @@
 package com.backend.practica10.demo.service
 
+import com.backend.practica10.demo.entity.Mascota
 import com.backend.practica10.demo.model.Mmascota
+import com.backend.practica10.demo.repository.mascotaRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.stereotype.Service
@@ -17,6 +19,10 @@ class generateReportService {
     @Qualifier("mascotaService")
     private lateinit var mascotaService: mascotaService;
 
+    @Autowired
+    @Qualifier("mascotaRepository")
+    private lateinit var mascotaRepository: mascotaRepository;
+
     private var path : String = "C:\\Users\\Ac-04\\Desktop";
 
     fun exportReport(response: HttpServletResponse) {
@@ -26,7 +32,7 @@ class generateReportService {
         var file: File = ResourceUtils.getFile("classpath:mascotas.jrxml")
 
         var jasperReport: JasperReport = JasperCompileManager.compileReport(file.absolutePath)
-        var dataSource: JRBeanCollectionDataSource = JRBeanCollectionDataSource(mascotas);
+        var dataSource = JRBeanCollectionDataSource(mascotas)
         val parameters = hashMapOf<String, Any>()
 
         parameters.put("createdBy", "veterinaria")
