@@ -27,7 +27,7 @@ class clienteController {
     private var log: Logger = Logger.getGlobal();
 
     @PostMapping("/")
-    fun agregarCliente(@RequestBody @Validated cliente: Cliente): Boolean {
+    fun agregarCliente(@RequestBody @Validated cliente: Cliente): Cliente? {
         log.info("ingreso a agregar cliente en post!")
         return servicio.agregar(cliente);
     }
@@ -51,6 +51,18 @@ class clienteController {
     fun obtenerClientes(): List<Mcliente> {
         log.info("mostrando todos los clientes");
         return servicio.obtenerClientes();
+    }
+
+    @PutMapping("/")
+    fun updateCliente(@RequestBody @Validated cliente:Cliente) : Boolean{
+        log.info("actualizando al cliente, nivel : ruta");
+        return servicio.updateCliente( cliente );
+    }
+
+    @DeleteMapping("/{id}")
+    fun deleteCliente( @PathVariable id : Int ) : Boolean {
+        log.info("eliminar el id: "+id.toString());
+        return servicio.eliminar( id );
     }
 
 }

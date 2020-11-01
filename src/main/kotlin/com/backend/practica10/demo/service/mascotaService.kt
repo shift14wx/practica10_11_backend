@@ -42,10 +42,11 @@ class mascotaService {
     }
 
     fun eliminar(id: Int): Boolean {
-        return checkIfModelsItsNotNull(repositorio.findById(id).get()) { m: Mascota -> repositorio.delete(m) }
+        return checkIfModelsItsNotNull(repositorio.findById(id.toLong()).get()) { m: Mascota -> repositorio.delete(m) }
     }
 
-    fun agregar(mascotaAlmacenar: Mmascota): Boolean {
+    fun agregar(mascotaAlmacenar: Mmascota): Mmascota {
+        log.info("service add mascota : "+mascotaAlmacenar.toString());
         var mascota: Mascota = Mascota(mascotaAlmacenar.codigo_mascota,
                 mascotaAlmacenar.nombre,
                 mascotaAlmacenar.fecha_nacimiento,
@@ -55,7 +56,7 @@ class mascotaService {
                 repositorioCliente.findById(mascotaAlmacenar.codigo_cliente).get(),
                 repositorioEspecie.findById(mascotaAlmacenar.codigo_especie).get()
         )
-        return checkIfModelsItsNotNull(mascota) { mascota: Mascota -> repositorio.save(mascota) }
+        return Mmascota( repositorio.save( mascota ) );
 
     }
 

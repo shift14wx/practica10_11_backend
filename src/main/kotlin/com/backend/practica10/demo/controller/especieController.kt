@@ -8,11 +8,13 @@ import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.http.HttpStatus
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*
+import java.util.logging.Logger
 
 @RestController
 @RequestMapping("/v1/especie")
 class especieController {
 
+    var log : Logger = Logger.getGlobal();
     @Autowired
     @Qualifier("especieService")
     private lateinit var servicio: especieService;
@@ -26,6 +28,7 @@ class especieController {
     @GetMapping("/")
     @ResponseStatus(HttpStatus.OK)
     fun obtenerEspecies(): List<MEspecie> {
+        log.info("getting all especies");
         return servicio.obtenerEspecies();
     }
 

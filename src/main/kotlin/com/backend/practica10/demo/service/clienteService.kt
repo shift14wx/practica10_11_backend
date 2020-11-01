@@ -28,9 +28,33 @@ class clienteService {
 
     }
 
-    fun agregar(cliente: Cliente): Boolean {
+    fun agregar(cliente: Cliente): Cliente? {
         log.info("agregando el cliente con nombre ${cliente.nombre}")
-        return checkIfClientIsValid(cliente) { cliente: Cliente -> repositorio.save(cliente) };
+        try {
+            return repositorio.save(cliente);
+        }catch (e: Exception){
+            return null;
+        }
+    }
+
+    fun eliminar( id: Int ) : Boolean{
+        log.info("eliminar al cliente: "+ id);
+        try {
+            if( repositorio.findById( id.toLong() ).isPresent() ){
+                repositorio.deleteById( id.toLong() )
+                log.info("eliminado id "+ id);
+            }else{
+                log.warning("no se encotro nada");
+            }
+            return true;
+        }catch( e: Exception ){
+            return false;
+        }
+    }
+
+    fun updateCliente( cliente : Cliente ) : Boolean {
+        log.info("actualizando cliente nivel servicio");
+        return checkIfClientIsValid(cliente) { cliente: Cliente -> repositorio.save(cliente) }
     }
 
     fun checkIfClientIsValid(cliente: Cliente, callback: (Cliente) -> Cliente): Boolean {

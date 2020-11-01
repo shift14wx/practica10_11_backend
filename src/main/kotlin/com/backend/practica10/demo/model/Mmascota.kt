@@ -12,8 +12,10 @@ data class Mmascota(
         var color: String,
         var comentarios: String,
         var codigo_cliente: Long,
-        var codigo_especie: Long
+        var codigo_especie: Long,
+        var cliente : String = "",
+        var especie : String = ""
 ) {
-    constructor(mascota: Mascota) : this(mascota.codigo_mascota, mascota.nombre, mascota.fecha_nacimiento, mascota.sexo, mascota.peso, mascota.color, mascota.comentarios, mascota.cliente.codigo_cliente, mascota.especie.codigo_especie)
+    constructor(mascota: Mascota) : this(mascota.codigo_mascota, mascota.nombre, mascota.fecha_nacimiento, mascota.sexo, mascota.peso, mascota.color, mascota.comentarios, mascota.cliente.codigo_cliente, mascota.especie.codigo_especie,mascota.cliente.nombre, mascota.especie.especie)
 }
 
