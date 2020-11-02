@@ -32,6 +32,10 @@ class especieService {
         }
     }
 
+    fun updateSpecie( especie: Especie ) : Boolean {
+        return checkIfEspecieIsValid( especie, { especie: Especie -> repositorio.save(especie) } )
+    }
+
     fun obtenerEspecies(): List<MEspecie> {
         return convertidor.convertirListToMEspecies(repositorio.findAll());
     }

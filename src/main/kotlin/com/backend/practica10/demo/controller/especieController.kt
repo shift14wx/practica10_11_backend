@@ -25,6 +25,11 @@ class especieController {
         return servicio.agregar(especie);
     }
 
+    @PutMapping("/")
+    fun updateEspecie( @RequestBody @Validated specie: Especie ) : Boolean{
+        return servicio.updateSpecie( specie )
+    }
+
     @GetMapping("/")
     @ResponseStatus(HttpStatus.OK)
     fun obtenerEspecies(): List<MEspecie> {
